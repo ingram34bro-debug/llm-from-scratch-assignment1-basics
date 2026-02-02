@@ -161,6 +161,11 @@ def train(path: str,dataset_path: str,vocab_size:int=10000,device: str="cpu",dty
         model=model,
         optimizer=optimizer,
         dataset=dataset,
+        dataset_valid=np.memmap(
+            '/home/std7/extend/lfs-data/vocab_ts_valid.npy',
+            dtype=np.uint16,
+            mode="r",
+        ),
         batch_size=batch_size,
         context_length=context_length,
         device=device,
@@ -176,7 +181,7 @@ if __name__=="__main__":
     
     train(
         path='checkpoint',
-        dataset_path='./lfs-data/vocab_ts_valid.npy',
+        dataset_path='/home/std7/extend/lfs-data/vocab_ts_train.npy',
         vocab_size=10000,
         dtype=torch.bfloat16,
         batch_size=32,

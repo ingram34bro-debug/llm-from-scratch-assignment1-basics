@@ -162,7 +162,7 @@ def train(path: str,dataset_path: str,vocab_size:int=10000,device: str="cpu",dty
         optimizer=optimizer,
         dataset=dataset,
         dataset_valid=np.memmap(
-            '/home/std7/extend/lfs-data/vocab_ts_valid.npy',
+            '/home/std7/extend/lfs-data/TinyStoriesV2-GPT4-valid.npy',
             dtype=np.uint16,
             mode="r",
         ),
@@ -181,7 +181,7 @@ if __name__=="__main__":
     
     train(
         path='checkpoint',
-        dataset_path='/home/std7/extend/lfs-data/vocab_ts_train.npy',
+        dataset_path='/home/std7/extend/lfs-data/TinyStoriesV2-GPT4-train.npy',
         vocab_size=10000,
         dtype=torch.bfloat16,
         batch_size=32,

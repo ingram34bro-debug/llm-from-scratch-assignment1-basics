@@ -66,7 +66,7 @@ class BPE_Trainer():
         word_encodings = {}
         for word in word_counts:
             word_encodings[word] = list(word.encode('utf-8'))
-
+        print(f"Initial vocab size: {size}, num unique words: {len(word_counts)}")
         pair_strings = {}
         pair_to_words = defaultdict(set)
         pair_counts = BPE_Trainer._count_pairs(word_counts, word_encodings, pair_strings, vocabulary, pair_to_words)
@@ -80,8 +80,6 @@ class BPE_Trainer():
                                    pair_to_words, word_counts, word_encodings,
                                    merges, size, pair_heap)
             size += 1
-      
-        
         return vocabulary, merges
 
     @staticmethod

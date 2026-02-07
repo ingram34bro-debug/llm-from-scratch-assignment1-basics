@@ -1,13 +1,13 @@
 from cs336_basics.bpe import *
 from cs336_basics.bpe_fast_heapq import *
 import time
+import pickle
 start_time = time.time()
-bpe_trainer=BPE_Trainer()
-vocab, merges = bpe_trainer.train(
-        input_path='lfs-data/owt_train.txt',
-            vocab_size=10000,
-            special_tokens=["<|endoftext|>","<|endoftext|><|endoftext|>"]
-    )
+with open('/home/std7/extend/lfs-data/owt_bpe_vocab.pkl', 'rb') as f:
+    vocab = pickle.load(f)
 end_time = time.time()
-print(f"Training completed in {end_time - start_time:.2f} seconds")
-print("Vocabulary Size:", len(vocab))
+sorted_vocab = sorted(vocab.items(), key=lambda x: len(x[1]), reverse=True)
+
+a=b'\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82\xc3\x83\xc3\x82'
+
+print(a.decode('utf-8', errors='ignore'))

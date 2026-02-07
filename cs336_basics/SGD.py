@@ -23,7 +23,7 @@ class SGD(torch.optim.Optimizer):
         return loss
 # Example usage:
 weights = torch.nn.Parameter(5 * torch.randn((10, 10)))
-opt = SGD([weights], lr=1)
+opt = SGD([weights], lr=1e-1)
 
 for t in range(10):
     opt.zero_grad() # Reset the gradients for all learnable parameters.

@@ -14,6 +14,9 @@ import math
 import tqdm
 import time
 import pickle
+from optimizer import *
+from get_batch import *
+from TransformerLM import TransformerLM
 
 
 from einops import rearrange, einsum
@@ -104,9 +107,6 @@ def MyLoadCheckpoint(
 
 # 定义单次训练：
 
-from optimizer import *
-from get_batch import *
-from TransformerLM import TransformerLM
 
 def SingleTrain(
     model: torch.nn.Module,
@@ -217,7 +217,6 @@ def _innerTrain(
             # step == 当前要执行的 step（0-based）
             t0 = time.time()
             data = MyGetBatch(dataset, batch_size, context_length, device)
-
             # 单步训练（如果这里异常，next_step_to_run 保持为 step，不会错误 +1）
             m = SingleTrain(model, optimizer, data, step, lrarg)
 

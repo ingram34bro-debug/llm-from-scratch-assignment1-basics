@@ -102,13 +102,29 @@ class RoPE(nn.Module):
         self.register_buffer('sin_cached', torch.sin(freqs), persistent=False)
 
     def forward(self, x: torch.Tensor, token_positions: torch.Tensor) -> torch.Tensor:
-        cos_pos =self.cos_cached[token_positions]
-        sin_pos =self.sin_cached[token_positions]
-        x1, x2 = x[..., ::2], x[..., 1::2] # x1: even, x2: odd
+    # x: (B, H, S, d_k)  或者更一般的 (..., H, S, d_k)
+    # token_positions: (B, S) 或 (S,)
+        if token_positions is None:
+        # 默认从 0..S-1
+            S = x.shape[-2]
+            token_positions = torch.arange(S, device=x.device)
+    
+    # 如果传入的是 (B,S)，RoPE 不需要 batch 维，取第一个即可（所有样本 positions 一样）
+        if token_positions.dim() == 2:
+            token_positions = token_positions[0]   # (S,)
+
+        cos_pos = self.cos_cached[token_positions]  # (S, d_k/2)
+        sin_pos = self.sin_cached[token_positions]  # (S, d_k/2)
+
+    # 关键：扩成 (1,1,S,d_k/2) 以广播到 (B,H,S,d_k/2)
+        cos_pos = cos_pos.unsqueeze(0).unsqueeze(0)
+        sin_pos = sin_pos.unsqueeze(0).unsqueeze(0)
+
+        x1, x2 = x[..., ::2], x[..., 1::2]  # (..., H, S, d_k/2)
 
         x_rotated = x1 * cos_pos - x2 * sin_pos
         y_rotated = x1 * sin_pos + x2 * cos_pos
-        
+
         out = torch.empty_like(x)
         out[..., ::2] = x_rotated
         out[..., 1::2] = y_rotated

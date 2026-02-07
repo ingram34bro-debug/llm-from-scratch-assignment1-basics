@@ -460,11 +460,11 @@ if __name__ == "__main__":
     d_ff=1344,
     theta=10000,
     max_seq_len=256,
-    batch_size=16,
+    batch_size=32,
     lr_initial=3e-2,
     lr_final=1e-5,
     lr_warmup_iters=1000,
-    max_iters=10000,
+    max_iters=40000,
     device="cuda" if torch.cuda.is_available() else "cpu",
 
     # ✅ W&B + 频率（也可不传，默认就是 10/200/500/20）

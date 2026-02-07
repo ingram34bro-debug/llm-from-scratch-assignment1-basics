@@ -449,9 +449,9 @@ if __name__ == "__main__":
     pr.enable()
 
     if_shutdown = Train(
-    path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/lr_1e-3/checkpoint_TinyStores.pth",
+    path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/lr_3e-2/checkpoint_TinyStores.pth",
     dataset_path="/home/std7/extend/lfs-data/TinyStoriesV2-GPT4-train.npy",
-    meta_path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/meta_TinyStores.pkl",
+    meta_path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/lr_3e-2/meta_TinyStores.pkl",
     val_dataset_path="/home/std7/extend/lfs-data/TinyStoriesV2-GPT4-valid.npy",  # 例子：你应换成真正 valid
     vocab_size=10000,
     num_layers=4,

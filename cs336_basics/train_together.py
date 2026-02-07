@@ -20,12 +20,12 @@ from einops import rearrange, einsum
 
 def create_model(meta: dict, device: str) -> torch.nn.Module:
     model = TransformerLM(
-        num_embeddings = meta["vocab_size"],
+        vocab_size = meta["vocab_size"],
         d_model = meta["d_model"],
         num_layers = meta["num_layers"],
         num_heads = meta["num_heads"],
-        theta= meta["theta"],
-        max_seq_len= meta["max_seq_len"],
+        rope_theta= meta["theta"],
+        context_length= meta["max_seq_len"],
         d_ff = meta["d_ff"],
         device=device,
     ).to(device)
@@ -295,17 +295,18 @@ if __name__ == "__main__":
 
     if_shutdown = Train(
         path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/checkpoint.pth",
-        dataset_path="/home/std7/extend//lfs-data/owt_valid.npy",
+        dataset_path="/home/std7/extend/lfs-data/TinyStoriesV2-GPT4-train.npy",
         meta_path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/meta.pkl",
+        val_dataset_path="/home/std7/extend/lfs-data/TinyStoriesV2-GPT4-valid.npy",
         # 结构参数
-        vocab_size=32000,
+        vocab_size=10000,
         num_layers=4,
-        d_model=16,
-        num_heads=4,
-        d_ff=16,
+        d_model=512,
+        num_heads=16,
+        d_ff=1344,
         # 网络超参数
-        theta=0.7,
-        max_seq_len=128,
+        theta=10000,
+        max_seq_len=256,
         # 训练超参数
         batch_size=16,
         lr_initial=1e-3,

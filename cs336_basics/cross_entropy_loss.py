@@ -23,4 +23,6 @@ def cross_entropy_loss(
     log_x = x - torch.log(torch.sum(torch.exp(x), dim=-1, keepdim=True))
     
     return -torch.mean(torch.gather(log_x, -1, targets.unsqueeze(-1)))
-    
+
+def perplexity(loss: torch.Tensor) -> torch.Tensor:
+    return torch.exp(loss)

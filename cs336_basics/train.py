@@ -461,7 +461,7 @@ if __name__ == "__main__":
     theta=10000,
     max_seq_len=256,
     batch_size=16,
-    lr_initial=1e-3,
+    lr_initial=3e-2,
     lr_final=1e-5,
     lr_warmup_iters=1000,
     max_iters=10000,

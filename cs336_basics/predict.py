@@ -47,7 +47,7 @@ class MyNaiveGPT:
         
         self._eof = tokenizer.encode("<|endoftext|>")[0]
         
-        self.max_content_length = self.model.max_seq_len
+        self.max_content_length = self.model.context_length - 1
     
     @classmethod
     def from_paths(
@@ -144,10 +144,10 @@ class MyNaiveGPT:
         return generated_text
 
 if __name__ == "__main__":
-    meta_path = "/home/std7/extend/llm-from-scratch-assignment1-basics/my_model/meta.pkl"
-    model_path = "/home/std7/extend/lfs-data/checkpoint.pth"
-    vocab_path = "/home/std7/extend/lfs-data/owt_bpe_vocab.pkl"
-    merge_path = "/home/std7/extend/lfs-data/owt_bpe_merges.pkl"
+    meta_path = "/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/meta_TinyStores.pkl"
+    model_path = "/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/checkpoint_TinyStores.pth"
+    vocab_path = "/home/std7/extend/lfs-data/ts_bpe_vocab.pkl"
+    merge_path = "/home/std7/extend/lfs-data/ts_bpe_merges.pkl"
     
     special_tokens = [b"<|endoftext|>"]
     

@@ -462,13 +462,13 @@ if __name__ == "__main__":
     batch_size=128,
     lr_initial=3e-2,
     lr_final=1e-5,
-    lr_warmup_iters=1000,
+    lr_warmup_iters=2000,
     max_iters=10000,
     device="cuda" if torch.cuda.is_available() else "cpu",
 
     # ✅ W&B + 频率（也可不传，默认就是 10/200/500/20）
     use_wandb=True,
-    wandb_project="llm-from-scratch",
+    wandb_project="llm-from-scratch", 
     wandb_run_name="baseline",
     log_every=10,
     val_every=200,

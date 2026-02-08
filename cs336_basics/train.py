@@ -448,9 +448,9 @@ if __name__ == "__main__":
     pr.enable()
 
     if_shutdown = Train(
-    path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/lr_3e-2/checkpoint_TinyStores.pth",
+    path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/lr_1e-2/checkpoint_TinyStores.pth",
     dataset_path="/home/std7/extend/lfs-data/TinyStoriesV2-GPT4-train.npy",
-    meta_path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/lr_3e-2/meta_TinyStores.pkl",
+    meta_path="/home/std7/extend/llm-from-scratch-assignment1-basics/my_module/lr_1e-2/meta_TinyStores.pkl",
     val_dataset_path="/home/std7/extend/lfs-data/TinyStoriesV2-GPT4-valid.npy",  # 例子：你应换成真正 valid
     vocab_size=10000,
     num_layers=4,
@@ -460,9 +460,9 @@ if __name__ == "__main__":
     theta=10000,
     max_seq_len=256,
     batch_size=128,
-    lr_initial=3e-2,
+    lr_initial=1e-2,
     lr_final=1e-5,
-    lr_warmup_iters=2000,
+    lr_warmup_iters=1000,
     max_iters=10000,
     device="cuda" if torch.cuda.is_available() else "cpu",
 
